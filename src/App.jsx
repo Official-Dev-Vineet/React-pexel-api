@@ -5,7 +5,7 @@ import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
 import Loader from "./Loader";
 
 function App() {
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(20);
   const [page, SetPage] = useState(1);
   const [search, setSearch] = useState("images");
   const [images, setImages] = useState([]);
@@ -64,7 +64,7 @@ function App() {
         </button>
       </div>
       <div className="report">showing Page {page} result :-</div>
-      <div className="image-container">
+      <div className={`image-container ${!isLoading ? "column" : ""}`}>
         {errorMsg === "Photos not found !" ? (
           <div className="error_msg">{errorMsg.slice(0, -1)}🥲🥲🥲</div>
         ) : isLoading ? (
