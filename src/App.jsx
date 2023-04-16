@@ -9,7 +9,7 @@ function App() {
   const [page, SetPage] = useState(1);
   const [search, setSearch] = useState("images");
   const [images, setImages] = useState([]);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
   const searchKeyWord = useRef();
   const [isLoading, setLoading] = useState(false);
 
