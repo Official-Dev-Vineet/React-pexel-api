@@ -100,14 +100,14 @@ body {
   }
 }
 .center {
-  height: 100vh;
+  height:200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .wave {
   width: 3px;
-  height: 100px;
+  height: 80px;
   background: linear-gradient(45deg, cyan, #fff);
   margin: 10px;
   animation: wave 1s linear infinite;
@@ -150,6 +150,6 @@ body {
   }
   100% {
     transform: scale(0);
-    filter: hue-rotate(360deg);
+    filter: contrast(400%)hue-rotate(360deg);
   }
 }

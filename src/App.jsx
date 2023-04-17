@@ -12,7 +12,6 @@ function App() {
   const [errorMsg, setErrorMsg] = useState("");
   const searchKeyWord = useRef();
   const [isLoading, setLoading] = useState(false);
-
   const apiURL = `https://api.pexels.com/v1/search?query=${search}&page=${page}&per_page=${count}}`;
   const data = async () => {
     setLoading(true);
