@@ -5,9 +5,33 @@ import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
 import Loader from "./Loader";
 
 function App() {
+  const browse = [
+    "trending",
+    "new",
+    "sun",
+    "moon",
+    "nature",
+    "hd wallpaper",
+    "4k wallpaper",
+    "mountain",
+    "sky",
+    "night sky",
+    "rain",
+    "cloud",
+    "laptop",
+    "desktop",
+    "smart phone",
+    "tablet",
+    "tv",
+    "car",
+    "bike",
+    "animals",
+    "birds",
+    "insects",
+  ];
   const [count, setCount] = useState(20);
   const [page, SetPage] = useState(1);
-  const [search, setSearch] = useState("images");
+  const [search, setSearch] = useState("garden");
   const [images, setImages] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const searchKeyWord = useRef();
@@ -62,7 +86,20 @@ function App() {
           <FaSearch />
         </button>
       </div>
-      <div className="report">showing Page {page} result :-</div>
+      <div className="browse-tab">
+        <ul>
+          {browse.map((value, index) => {
+            return (
+              <li key={index} onClick={() => setSearch(value)}>
+                {value}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div className="report">
+        showing result of {search} page : {page}:-
+      </div>
       <div className={`image-container ${!isLoading ? "column" : ""}`}>
         {errorMsg === "Photos not found !" ? (
           <div className="error_msg">{errorMsg.slice(0, -1)}🥲🥲🥲</div>
@@ -73,7 +110,7 @@ function App() {
             return (
               <div className="image" key={index}>
                 <div className="actual_image">
-                  <img src={image?.src?.large2x} alt={image?.alt} />
+                  <img src={image?.src?.large} alt={image?.alt} />
                 </div>
                 <div className="image-details">
                   <div className="image-title">{image?.photographer}</div>

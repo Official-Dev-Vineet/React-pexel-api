@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: all 300ms ease;
+  transition: all 0.3s ease;
   font-family: sans-serif;
 }
 :root {
@@ -11,9 +11,6 @@
 }
 html {
   scroll-behavior: smooth;
-}
-.balance {
-  text-wrap: balance;
 }
 body {
   background-color: var(--dark);
@@ -91,6 +88,7 @@ body {
   border: none;
   outline: none;
   padding: 0.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 @media screen and (max-width: 750px) {
