@@ -72,3 +72,35 @@
 .image:hover .image-details {
   bottom: 0;
 }
+.image-details .image-title{
+display: flex;
+align-items: center;  
+justify-content: space-between;
+}
+.download-btn{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 5px;
+  font-weight: 100;
+  display: grid;
+  place-items: center;
+  }
+  .file-handler{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8 );
+    z-index: 100;
+   padding: 2rem;
+  }
+  .image-area{
+    background-color: var(--avgColor);
+    padding: 1rem 2rem;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+  }

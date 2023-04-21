@@ -1,8 +1,14 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import "./App.css";
 import GoToTopButton from "./GoToTopButton";
-import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaDownload,
+  FaSearch,
+} from "react-icons/fa";
 import Loader from "./Loader";
+import FileConfirmation from "./FileConfirmation";
 
 function App() {
   const browse = [
@@ -31,18 +37,18 @@ function App() {
   ];
   const [count, setCount] = useState(20);
   const [page, SetPage] = useState(1);
-  const [search, setSearch] = useState("garden");
+  const [search, setSearch] = useState("React");
   const [images, setImages] = useState([]);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
   const searchKeyWord = useRef();
   const [isLoading, setLoading] = useState(false);
+  const [fileConfirmation, setFileConfirmation] = useState(false);
+  const [imageData, setImageData] = useState(null);
+
   const apiURL = `https://api.pexels.com/v1/search?query=${search}&page=${page}&per_page=${count}}`;
   const data = async () => {
     setLoading(true);
-    const imageSet = (image) => {
-      setImages(image);
-      setLoading(false);
-    };
+
     const errorSet = () => {
       SetPage(0);
       setErrorMsg("Photos not found !");
@@ -55,19 +61,29 @@ function App() {
     })
       .then((res) => res?.json())
       .then((data) => {
-        data?.photos?.length > 0 ? imageSet(data?.photos) : errorSet();
+        data?.photos?.length > 0 ? setImages(data.photos) : errorSet();
       })
-      .catch(() => setErrorMsg("Failed to load images!"));
+      .catch((e) => setErrorMsg("Failed to load images! the reason is :", e))
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  function toggler(data) {
+    setFileConfirmation(data);
+  }
+  const fileHandling = (data) => {
+    setFileConfirmation(true);
+    setImageData(data);
   };
   const searchHandler = () => {
-    setErrorMsg("");
+    setErrorMsg(null);
     setSearch(searchKeyWord.current.value);
   };
   const pageHandler = (text) => {
-    text === "pre" && page > 1 && errorMsg === ""
+    text === "pre" && page > 1 && errorMsg === null
       ? SetPage((pre) => pre - 1)
       : "";
-    text === "next" && page > 0 && errorMsg === ""
+    text === "next" && page > 0 && errorMsg === null
       ? SetPage((pre) => pre + 1)
       : "";
   };
@@ -113,13 +129,26 @@ function App() {
                   <img src={image?.src?.large} alt={image?.alt} />
                 </div>
                 <div className="image-details">
-                  <div className="image-title">{image?.photographer}</div>
+                  <div className="image-title">
+                    <p>{image?.photographer}</p>
+                    <button
+                      onClick={() => fileHandling(image)}
+                      className="download-btn"
+                    >
+                      <FaDownload />{" "}
+                    </button>
+                  </div>
                 </div>
               </div>
             );
           })
         )}
       </div>
+      {fileConfirmation ? (
+        <FileConfirmation data={imageData} fileConfirmation={toggler} />
+      ) : (
+        ""
+      )}
       <div className="btn-group">
         <button className="previous" onClick={() => pageHandler("pre")}>
           <FaArrowLeft />
