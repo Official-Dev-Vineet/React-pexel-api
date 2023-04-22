@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import Loader from "./Loader";
 import FileConfirmation from "./FileConfirmation";
+import OnlineStatus from "./OnlineStatus";
 
 function App() {
   const browse = [

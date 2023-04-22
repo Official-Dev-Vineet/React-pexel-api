@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -12,9 +13,13 @@
 html {
   scroll-behavior: smooth;
 }
+*::-webkit-scrollbar{
+  width: 0;
+}
 body {
   background-color: var(--dark);
   color: var(--light);
+  font-family: "Open Sans", sans-serif;
 }
 .input_box {
   padding: 0 1.3rem;
@@ -98,7 +103,7 @@ body {
   }
 }
 .center {
-  height:200px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,6 +153,6 @@ body {
   }
   100% {
     transform: scale(0);
-    filter: contrast(400%)hue-rotate(360deg);
+    filter: contrast(400%) hue-rotate(360deg);
   }
 }
