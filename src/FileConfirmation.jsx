@@ -53,7 +53,7 @@ const FileConfirmation = (props) => {
   });
   return (
     <div
-      className="file-handler"
+      className={`file-handler`}
       style={{ "--avgColor": props.data.avg_color }}
     >
       {isLoading ? (
@@ -101,14 +101,16 @@ const FileConfirmation = (props) => {
               </p>
             </div>
           </div>
-          <button className="download-btn"
+          <button
+            className="download-btn"
             onClick={() => {
               downloadHandler();
             }}
           >
             free download
           </button>
-          <button className="close-btn"
+          <button
+            className="close-btn"
             onClick={() => props.fileConfirmation(!props.fileConfirmation)}
           >
             close

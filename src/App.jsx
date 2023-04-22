@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 import Loader from "./Loader";
 import FileConfirmation from "./FileConfirmation";
-import OnlineStatus from "./OnlineStatus";
 
 function App() {
   const browse = [
@@ -38,7 +37,7 @@ function App() {
   ];
   const [count, setCount] = useState(20);
   const [page, SetPage] = useState(1);
-  const [search, setSearch] = useState("React");
+  const [search, setSearch] = useState("latest");
   const [images, setImages] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
   const searchKeyWord = useRef();
@@ -89,6 +88,7 @@ function App() {
       : "";
   };
   useEffect(() => {
+    setErrorMsg(null);
     SetPage(1);
     data();
   }, [search]);
@@ -151,10 +151,22 @@ function App() {
         ""
       )}
       <div className="btn-group">
-        <button className="previous" onClick={() => pageHandler("pre")}>
+        <button
+          className="previous"
+          style={
+            isLoading ? { pointerEvents: "none" } : { pointerEvents: "all" }
+          }
+          onClick={() => pageHandler("pre")}
+        >
           <FaArrowLeft />
         </button>
-        <button className="next" onClick={() => pageHandler("next")}>
+        <button
+          className="next"
+          style={
+            isLoading ? { pointerEvents: "none" } : { pointerEvents: "all" }
+          }
+          onClick={() => pageHandler("next")}
+        >
           <FaArrowRight />
         </button>
       </div>

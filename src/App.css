@@ -108,6 +108,9 @@ a:visited {
   padding: 2rem 1rem;
   /* background-color: var(--avgColor); */
 }
+.file-handler.black{
+  background-color: #151515;
+}
 .file-handler h1 {
   font-size: 1.2rem;
   font-weight: 500;
