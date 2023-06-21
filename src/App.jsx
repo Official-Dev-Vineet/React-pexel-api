@@ -56,7 +56,7 @@ function App() {
     await fetch(apiURL, {
       headers: {
         Authorization:
-          import.meta.env.VITE_KEY,
+          "563492ad6f91700001000001af762a74bbf447dd8b768b453406edc7",
       },
     })
       .then((res) => res?.json())
